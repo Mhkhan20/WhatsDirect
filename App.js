@@ -5,8 +5,19 @@ export default function App() {
   // Initializing the variable holding the phone number
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  // Function to validate the phone number input
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^[0-9]{10,15}$/; // Regex to check if the input is between 10 to 15 digits (common phone number length)
+    return phoneRegex.test(phone);
+  };
+
   // The function called when the button is pressed
   const openWhatsApp = () => { 
+    if (!validatePhoneNumber(phoneNumber)) {
+      Alert.alert('Invalid Number', 'Please enter a valid phone number with country code (without +).');
+      return;
+    }
+
     const whatsappURL = `https://wa.me/${phoneNumber}`;  // These are `` backticks
     
     Linking.openURL(whatsappURL)
@@ -33,8 +44,6 @@ export default function App() {
         <TouchableOpacity style={styles.button} onPress={openWhatsApp}>
           <Text style={styles.buttonText}> Open WhatsApp</Text>
         </TouchableOpacity>
-
-
       </View>
     </ImageBackground>
   );
