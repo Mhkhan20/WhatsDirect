@@ -15,6 +15,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mhkhan20.WhatsDirect"
+      
     },
     "android": {
       "adaptiveIcon": {
